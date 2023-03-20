@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itheima.mapper.dmStudentMapper">
+    <insert id="demoForeach">
+        insert into dm_student values
+        <foreach collection="students" item="dmStudent" separator=",">
+            (null,#{dmStudent.name},#{dmStudent.major},#{dmStudent.sno})
+        </foreach>
+    </insert>
+
+    <update id="demoUpdate" parameterType="com.itheima.pojo.dmStudent">
+        update dm_student
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="major != null and major != ''">
+                major = #{major},
+            </if>
+            <if test="sno != null and sno != ''">
+                sno = #{sno},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="demoIf" resultType="dmStudent">
+        select * from dm_student where 1=1
+        <if test="sno != null">
+            and major = 'b'
+        </if>
+    </select>
+
+    <select id="demoWhere" resultType="com.itheima.pojo.dmStudent">
+        select * from dm_student
+        <where>
+            <if test="name != null and name != ''">
+                name = #{name}
+            </if>
+            <if test="major != null and major != ''">
+                and major = #{major}
+            </if>
+            <if test="sno != null and sno != ''">
+                and sno = #{sno}
+            </if>
+        </where>
+    </select>
+
+    <select id="demoTrim" resultType="com.itheima.pojo.dmStudent" parameterType="com.itheima.pojo.dmStudent">
+        select * from dm_student
+        <trim prefix="where" suffixOverrides="and">
+            <if test="name != null and name != ''">
+                name = #{name} and
+            </if>
+            <if test="major != null and major != ''">
+                major = #{major} and
+            </if>
+            <if test="sno != null and sno != ''">
+                sno = #{sno}
+            </if>
+        </trim>
+
+    </select>
+
+    <select id="demoChoose" resultType="com.itheima.pojo.dmStudent" parameterType="com.itheima.pojo.dmStudent">
+        select * from dm_student
+        <where>
+            <choose>
+                <when test="name != null and name != ''">name = #{name}</when>
+                <when test="major != null and major != ''">major = #{major}</when>
+                <when test="sno != null and sno != ''">sno = #{sno}</when>
+                <otherwise>1=1</otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="getByNameNotNull" resultType="com.itheima.pojo.dmStudent" parameterType="java.lang.String">
+        SELECT * FROM dm_student
+        <where>
+            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+        </where>
+    </select>
+
+    <select id="getByMajorNotNull" resultType="com.itheima.pojo.dmStudent" parameterType="java.lang.String">
+        SELECT * FROM dm_student
+        <where>
+            <if test="name == null and major != null">
+                AND major = #{major}
+            </if>
+        </where>
+    </select>
+
+    <select id="getByMajorNull" resultType="com.itheima.pojo.dmStudent">
+        SELECT * FROM dm_student
+        <where>
+            <if test="name == null and major == null">
+                AND id IS NOT NULL
+            </if>
+        </where>
+    </select>
+
+    <select id="getByIdmin" resultType="com.itheima.pojo.dmStudent">
+        SELECT * FROM dm_student
+        <where>
+            <if test="id != null">
+                AND id &lt; #{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="getByForEachArray" resultType="com.itheima.pojo.dmStudent">
+        select * from dm_student
+        where id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+    <select id="getByForEachList" resultType="com.itheima.pojo.dmStudent">
+        select * from dm_student
+        where id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+    <select id="getByForEachMap" resultType="com.itheima.pojo.dmStudent">
+        select * from dm_student where major = #{major} and id in
+        <foreach collection="id" item="roleMap" open="(" close=")" separator=",">
+            #{roleMap}
+        </foreach>
+    </select>
+
+
+</mapper>

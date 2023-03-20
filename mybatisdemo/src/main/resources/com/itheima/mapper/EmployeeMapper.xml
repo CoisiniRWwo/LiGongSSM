@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itheima.mapper.EmployeeMapper">
+
+    <resultMap id="BaseResultMap" type="com.itheima.pojo.Employee">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="position" column="position" jdbcType="VARCHAR"/>
+    </resultMap>
+    <insert id="insert" parameterType="Employee">
+        insert into employee values(null,#{name},#{age},#{position})
+    </insert>
+    <update id="updateById" parameterType="Employee">
+        update employee set name=#{name},age=#{age} where id = #{id}
+    </update>
+    <delete id="deleteById" parameterType="Employee">
+        delete from employee where id = #{id}
+    </delete>
+    <select id="getById" resultType="Employee" parameterType="int">
+        select * from employee where id = #{id}
+    </select>
+
+</mapper>

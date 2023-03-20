@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--引入properties文件-->
+    <properties resource="jdbc.properties"/>
+
+    <settings>
+        <!--    将下划线映射为驼峰    -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--    lazyLoadingEnabled：延迟加载的全局开关。当开启时，所有关联对象都会延迟加载    -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!--    aggressiveLazyLoading：当开启时，任何方法的调用都会加载该对象的所有属性。否则，每个属性会按需加载    -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+
+    <typeAliases>
+        <!--        <typeAlias type="com.shf.pojo.Users" alias="users"></typeAlias>-->
+        <package name="com.shf.pojo"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 引入mybaits的映射文件 -->
+    <mappers>
+        <!--        <mapper resource="mappers/UsersMapper.xml"/>-->
+        <package name="com.shf.mapper"/>
+    </mappers>
+
+</configuration>
