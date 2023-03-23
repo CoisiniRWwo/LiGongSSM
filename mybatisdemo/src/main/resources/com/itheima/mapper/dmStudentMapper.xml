@@ -30,7 +30,7 @@
     <select id="demoIf" resultType="dmStudent">
         select * from dm_student where 1=1
         <if test="sno != null">
-            and major = 'b'
+            and major = #{major}
         </if>
     </select>
 

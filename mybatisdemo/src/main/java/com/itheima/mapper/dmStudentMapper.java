@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface dmStudentMapper {
-    List<dmStudent> demoIf(int i);
+    List<dmStudent> demoIf(String major);
     List<dmStudent> demoWhere(dmStudent student);
     List<dmStudent> demoTrim(dmStudent student);
     List<dmStudent> demoChoose(dmStudent student);

@@ -73,7 +73,7 @@ public class MyBatisTest {
     public void demoIf() throws IOException{
         MyBatisUtils myBatisUtils = new MyBatisUtils();
         dmStudentMapper mapper = myBatisUtils.sqlSession().getMapper(dmStudentMapper.class);
-        List<dmStudent> dmStudentMappers = mapper.demoIf(2);
+        List<dmStudent> dmStudentMappers = mapper.demoIf("数学");
         System.out.println(dmStudentMappers);
     }
 
@@ -81,7 +81,7 @@ public class MyBatisTest {
     public void demoWhere() throws IOException{
         MyBatisUtils myBatisUtils = new MyBatisUtils();
         dmStudentMapper mapper = myBatisUtils.sqlSession().getMapper(dmStudentMapper.class);
-        List<dmStudent> dmStudentMappers = mapper.demoWhere(new dmStudent(5,"小黑","c",1));
+        List<dmStudent> dmStudentMappers = mapper.demoWhere(new dmStudent("王五","计算机",	10003));
         System.out.println(dmStudentMappers);
     }
 
@@ -89,7 +89,7 @@ public class MyBatisTest {
     public void demoTrim() throws IOException{
         MyBatisUtils myBatisUtils = new MyBatisUtils();
         dmStudentMapper mapper = myBatisUtils.sqlSession().getMapper(dmStudentMapper.class);
-        List<dmStudent> dmStudentMappers = mapper.demoTrim(new dmStudent(4,"小新","a",2));
+        List<dmStudent> dmStudentMappers = mapper.demoTrim(new dmStudent("李四","英语",10002));
         System.out.println(dmStudentMappers);
     }
 
@@ -97,7 +97,7 @@ public class MyBatisTest {
     public void demoChoose() throws IOException{
         MyBatisUtils myBatisUtils = new MyBatisUtils();
         dmStudentMapper mapper = myBatisUtils.sqlSession().getMapper(dmStudentMapper.class);
-        List<dmStudent> dmStudentMappers = mapper.demoChoose(new dmStudent(4,"小新","a",2));
+        List<dmStudent> dmStudentMappers = mapper.demoChoose(new dmStudent("李四","英语",10002));
         System.out.println(dmStudentMappers);
     }
 
@@ -118,7 +118,7 @@ public class MyBatisTest {
     public void getByNameNotNull() throws IOException{
         MyBatisUtils myBatisUtils = new MyBatisUtils();
         dmStudentMapper mapper = myBatisUtils.sqlSession().getMapper(dmStudentMapper.class);
-        List<dmStudent> dmStudentMappers = mapper.getByNameNotNull("小明");
+        List<dmStudent> dmStudentMappers = mapper.getByNameNotNull("王五");
         System.out.println(dmStudentMappers);
     }
 
@@ -126,7 +126,7 @@ public class MyBatisTest {
     public void getByMajorNotNull() throws IOException{
         MyBatisUtils myBatisUtils = new MyBatisUtils();
         dmStudentMapper mapper = myBatisUtils.sqlSession().getMapper(dmStudentMapper.class);
-        List<dmStudent> dmStudentMappers = mapper.getByMajorNotNull(new dmStudent(null,"a"));
+        List<dmStudent> dmStudentMappers = mapper.getByMajorNotNull(new dmStudent(null,"数学"));
         System.out.println(dmStudentMappers);
     }
 
@@ -150,7 +150,7 @@ public class MyBatisTest {
     public void demoUpdate() throws IOException{
         MyBatisUtils myBatisUtils = new MyBatisUtils();
         dmStudentMapper mapper = myBatisUtils.sqlSession().getMapper(dmStudentMapper.class);
-        int dmStudentMappers = mapper.demoUpdate(new dmStudent(10,"中中","a",2));
+        int dmStudentMappers = mapper.demoUpdate(new dmStudent(7,"关羽","俄语",10007));
         if (dmStudentMappers>=1){
             System.out.println("修改数据成功");
         }
@@ -185,7 +185,7 @@ public class MyBatisTest {
         integers.add(3);
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("id",integers);
-        hashMap.put("major","c");
+        hashMap.put("major","计算机");
         List<dmStudent> dmStudentMappers = mapper.getByForEachMap(hashMap);
         System.out.println(dmStudentMappers);
     }
