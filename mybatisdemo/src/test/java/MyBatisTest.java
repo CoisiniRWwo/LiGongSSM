@@ -1,8 +1,8 @@
-import com.itheima.mapper.EmployeeMapper;
-import com.itheima.mapper.dmStudentMapper;
-import com.itheima.pojo.Employee;
-import com.itheima.pojo.dmStudent;
+import com.itheima.mapper.*;
+import com.itheima.pojo.*;
 import com.itheima.utils.MyBatisUtils;
+import com.itheima.utils.SqlSessionUtil;
+import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -188,5 +188,101 @@ public class MyBatisTest {
         hashMap.put("major","计算机");
         List<dmStudent> dmStudentMappers = mapper.getByForEachMap(hashMap);
         System.out.println(dmStudentMappers);
+
+    }
+
+    @Test
+    public void findPersonByIdTest() throws IOException {
+        MyBatisUtils myBatisUtils = new MyBatisUtils();
+        PersonMapper personMapper = myBatisUtils.sqlSession().getMapper(PersonMapper.class);
+        Person personById = personMapper.findPersonById(1);
+        System.out.println(personById);
+        Person personById2 = personMapper.findPersonById2(2);
+        System.out.println(personById2);
+    }
+
+    @Test
+    public void findUserTest() throws IOException {
+        MyBatisUtils myBatisUtils = new MyBatisUtils();
+        UsersMapper usersMapper = myBatisUtils.sqlSession().getMapper(UsersMapper.class);
+        Users userWithOrders = usersMapper.findUserWithOrders(1);
+        System.out.println(userWithOrders);
+        Users userWithOrders2 = usersMapper.findUserWithOrders2(1);
+        System.out.println(userWithOrders2);
+    }
+
+    @Test
+    public void findOrdersTest() throws IOException {
+        MyBatisUtils myBatisUtils = new MyBatisUtils();
+        OrderItemMapper orderItemMapper = myBatisUtils.sqlSession().getMapper(OrderItemMapper.class);
+        OrderItem ordersWithProduct = orderItemMapper.findOrdersWithProduct(1);
+        System.out.println(ordersWithProduct);
+        OrderItem ordersWithProduct2 = orderItemMapper.findOrdersWithProduct2(1);
+        System.out.println(ordersWithProduct2);
+    }
+
+    @Test
+    public void findCategoryTest() throws IOException {
+        MyBatisUtils myBatisUtils = new MyBatisUtils();
+        CategoryMapper categoryMapper = myBatisUtils.sqlSession().getMapper(CategoryMapper.class);
+        Category categoryTest = categoryMapper.findCategoryTest(2);
+        System.out.println(categoryTest);
+    }
+
+    @Test
+    public void findBookByIdTest1() {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        Book book1 = sqlSession.selectOne("com.itheima.mapper.BookMapper.findBookById", 1);
+        System.out.println(book1);
+        Book book2 = sqlSession.selectOne("com.itheima.mapper.BookMapper.findBookById", 1);
+        System.out.println(book2);
+        sqlSession.close();
+    }
+
+    @Test
+    public void findBookByIdTest2() {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        Book book1 = sqlSession.selectOne("com.itheima.mapper.BookMapper.findBookById", 1);
+        System.out.println(book1);
+        Book book2 = new Book();
+        book2.setId(3);
+        book2.setBookName("MySQL数据库入门");
+        book2.setPrice(40.0);
+        sqlSession.update("com.itheima.mapper.BookMapper.updateBook", book2);
+        Book book3 = sqlSession.selectOne("com.itheima.mapper.BookMapper.findBookById", 1);
+        System.out.println(book1);
+        sqlSession.close();
+    }
+
+    @Test
+    public void findBookByIdTest3() {
+        SqlSession sqlSession1 = SqlSessionUtil.getSqlSession();
+        SqlSession sqlSession2 = SqlSessionUtil.getSqlSession();
+        Book book1 = sqlSession1.selectOne("com.itheima.mapper.BookMapper.findBookById", 1);
+        System.out.println(book1);
+        sqlSession1.close();
+        Book book2 = sqlSession2.selectOne("com.itheima.mapper.BookMapper.findBookById", 1);
+        System.out.println(book2);
+        sqlSession2.close();
+    }
+
+    @Test
+    public void findBookByIdTest4() {
+        SqlSession sqlSession1 = SqlSessionUtil.getSqlSession();
+        SqlSession sqlSession2 = SqlSessionUtil.getSqlSession();
+        SqlSession sqlSession3 = SqlSessionUtil.getSqlSession();
+        Book book1 = sqlSession1.selectOne("com.itheima.mapper.BookMapper.findBookById", 1);
+        System.out.println(book1);
+        sqlSession1.close();
+        Book book2 = new Book();
+        book2.setId(2);
+        book2.setBookName("Java Web程序开发进阶");
+        book2.setPrice(45.0);
+        sqlSession2.update("com.itheima.mapper.BookMapper.updateBook", book2);
+        sqlSession2.commit();
+        sqlSession2.close();
+        Book book3 = sqlSession3.selectOne("com.itheima.mapper.BookMapper.findBookById", 1);
+        System.out.println(book3);
+        sqlSession3.close();
     }
 }

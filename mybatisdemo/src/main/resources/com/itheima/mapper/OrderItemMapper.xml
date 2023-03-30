@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itheima.mapper.OrderItemMapper">
+    <select id="findOrdersWithProduct" resultMap="OrderWithProductResult">
+        select *
+        from tb_ordersitem
+        where id = #{id}
+    </select>
+    <resultMap id="OrderWithProductResult" type="OrderItem">
+        <id property="id" column="id"></id>
+        <result property="orders_id" column="orders_id"></result>
+        <result property="product_id" column="product_id"></result>
+        <collection property="productList" column="product_id" ofType="Product"
+                    select="com.itheima.mapper.ProductMapper.findProductById">
+        </collection>
+    </resultMap>
+
+    <select id="findOrdersWithProduct2" resultMap="OrderWithProductResult2">
+        select o.*, p.id as pid, p.name, p.price
+        from tb_ordersitem o,
+             tb_product p
+        where o.product_id = p.id
+          and o.id = #{id}
+    </select>
+    <resultMap id="OrderWithProductResult2" type="OrderItem">
+        <id property="id" column="id"></id>
+        <result property="orders_id" column="orders_id"></result>
+        <result property="product_id" column="product_id"></result>
+        <collection property="productList" ofType="Product">
+            <id property="id" column="pid"></id>
+            <result property="name" column="name"></result>
+            <result property="price" column="price"></result>
+        </collection>
+    </resultMap>
+
+</mapper>

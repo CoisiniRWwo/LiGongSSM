@@ -1,0 +1,23 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">-->
+
+<!--<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">-->
+<!--    &lt;!&ndash; 日志文件配置 &ndash;&gt;-->
+<!--    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">-->
+<!--        <param name="Encoding" value="UTF-8" />-->
+<!--        <layout class="org.apache.log4j.PatternLayout">-->
+<!--            <param name="ConversionPattern" value="%-5p{MM-dd HH:mm:ss:SSS} %m(%F:%L) \n" />-->
+<!--        </layout>-->
+<!--    </appender>-->
+<!--    <logger name="java.sql">-->
+<!--        <level value="debug" />-->
+<!--    </logger>-->
+<!--    <logger name="org.apache.ibatis">-->
+<!--        <level value="info" />-->
+<!--    </logger>-->
+<!--    &lt;!&ndash;  日志级别：FATAL(致命)>WARN(错误)>INFO(信息)>DEBUG(调试)  &ndash;&gt;-->
+<!--    <root>-->
+<!--        <level value="debug" />-->
+<!--        <appender-ref ref="STDOUT" />-->
+<!--    </root>-->
+<!--</log4j:configuration>-->

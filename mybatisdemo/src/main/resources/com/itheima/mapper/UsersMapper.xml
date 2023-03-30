@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itheima.mapper.UsersMapper">
+
+    <select id="findUserWithOrders" resultMap="UserWithOrdersResult">
+        select u.*, o.id as order_id, o.number
+        from tb_user u,
+             tb_orders o
+        where u.id = o.user_id
+          and u.id = #{id}
+    </select>
+    <resultMap id="UserWithOrdersResult" type="Users">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="address" column="address"></result>
+        <collection property="ordersList" ofType="Orders">
+            <id property="id" column="order_id"/>
+            <result property="number" column="number"></result>
+        </collection>
+    </resultMap>
+
+    <resultMap id="UserWithOrdersResult2" type="Users">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="address" column="address"></result>
+        <collection property="ordersList" ofType="Orders"
+                    select="com.itheima.mapper.OrdersMapper.selectByid" column="id">
+        </collection>
+    </resultMap>
+    <select id="findUserWithOrders2" resultMap="UserWithOrdersResult2">
+        select *
+        from tb_user
+        where id = #{id}
+    </select>
+</mapper>
