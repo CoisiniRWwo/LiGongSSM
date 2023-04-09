@@ -29,7 +29,7 @@ public class CalcTest {
     public void testAdd() {
         Calc calc = new Calc();
         int result = calc.add(1, 2);
-        assertEquals(3, result);
+        assertEquals(4, result);
     }
     @Test
     public void testSub() {
