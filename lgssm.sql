@@ -11,11 +11,27 @@
  Target Server Version : 80029 (8.0.29)
  File Encoding         : 65001
 
- Date: 30/03/2023 20:47:13
+ Date: 12/04/2023 16:21:27
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for c_class
+-- ----------------------------
+DROP TABLE IF EXISTS `c_class`;
+CREATE TABLE `c_class`  (
+  `id` int NOT NULL,
+  `classname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of c_class
+-- ----------------------------
+INSERT INTO `c_class` VALUES (1, '一班');
+INSERT INTO `c_class` VALUES (2, '二班');
 
 -- ----------------------------
 -- Table structure for category
@@ -95,6 +111,26 @@ INSERT INTO `product` VALUES (1, '电视机', 5000, 1);
 INSERT INTO `product` VALUES (2, '冰箱', 4000, 2);
 INSERT INTO `product` VALUES (3, '空调', 3000, 2);
 INSERT INTO `product` VALUES (4, '洗衣机', 2000, 2);
+
+-- ----------------------------
+-- Table structure for s_student
+-- ----------------------------
+DROP TABLE IF EXISTS `s_student`;
+CREATE TABLE `s_student`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `age` int NULL DEFAULT NULL,
+  `cid` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of s_student
+-- ----------------------------
+INSERT INTO `s_student` VALUES (1, '张三', 18, 1);
+INSERT INTO `s_student` VALUES (2, '李四', 18, 2);
+INSERT INTO `s_student` VALUES (3, '王五', 19, 2);
+INSERT INTO `s_student` VALUES (4, '赵六', 20, 1);
 
 -- ----------------------------
 -- Table structure for tb_book
@@ -230,6 +266,26 @@ CREATE TABLE `tb_user`  (
 INSERT INTO `tb_user` VALUES (1, '小明', '北京');
 INSERT INTO `tb_user` VALUES (2, '李华', '上海');
 INSERT INTO `tb_user` VALUES (3, '李刚', '上海');
+
+-- ----------------------------
+-- Table structure for tb_worker
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_worker`;
+CREATE TABLE `tb_worker`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `age` int NULL DEFAULT NULL,
+  `sex` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `worker_id` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_worker
+-- ----------------------------
+INSERT INTO `tb_worker` VALUES (1, '张三', 32, '女', 1001);
+INSERT INTO `tb_worker` VALUES (2, '李四', 29, '男', 1002);
+INSERT INTO `tb_worker` VALUES (3, '王五', 26, '男', 1003);
 
 -- ----------------------------
 -- Table structure for users

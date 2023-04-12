@@ -11,6 +11,7 @@
     <modules>
         <module>MyBatis-test</module>
         <module>mybatisdemo</module>
+        <module>mybatis_annotate</module>
     </modules>
 
     <properties>
