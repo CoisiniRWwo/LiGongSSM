@@ -2,7 +2,6 @@ package com.shf.mapper;
 
 import com.shf.pojo.Users;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 /**
  * @author SHF

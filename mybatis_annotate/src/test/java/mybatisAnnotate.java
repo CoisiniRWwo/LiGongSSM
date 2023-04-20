@@ -31,7 +31,7 @@ public class mybatisAnnotate {
     public void updateWorker() throws IOException{
         MyBatisUtils myBatisUtils = new MyBatisUtils();
         workerMapper categoryMapper = myBatisUtils.sqlSession().getMapper(workerMapper.class);
-        int updateWorker = categoryMapper.updateWorker(new tbworker(4, 1000));
+        int updateWorker = categoryMapper.updateWorker(new tbworker(5, 1000));
         System.out.println("成功修改数据："+updateWorker+"条");
     }
 
@@ -39,7 +39,7 @@ public class mybatisAnnotate {
     public void deleteWorker() throws IOException{
         MyBatisUtils myBatisUtils = new MyBatisUtils();
         workerMapper categoryMapper = myBatisUtils.sqlSession().getMapper(workerMapper.class);
-        int deleteWorker = categoryMapper.deleteWorker(4);
+        int deleteWorker = categoryMapper.deleteWorker(7);
         System.out.println("成功删除数据："+deleteWorker+"条");
     }
 

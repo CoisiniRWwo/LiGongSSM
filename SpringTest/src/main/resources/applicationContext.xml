@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        配置HelloWorld所对应的bean，即将HelloWorld的对象交给Spring的IOC容器管理
+        通过bean标签配置IOC容器所管理的bean
+        属性：
+        id：设置bean的唯一标识
+        class：设置bean所对应类型的全类名
+    -->
+    <bean id="hellospring" class="com.shf.spring.pojo.HelloSpring"></bean>
+
+    <bean id="user" class="com.shf.spring.pojo.User">
+        <!-- property标签：通过组件类的setXxx()方法给组件对象设置属性 -->
+        <!-- name属性：指定属性名（这个属性名是getXxx()、setXxx()方法定义的，和成员变量无关）
+        -->
+        <!-- value属性：指定属性值 -->
+        <constructor-arg value="1"></constructor-arg>
+        <constructor-arg value="张三"></constructor-arg>
+        <constructor-arg value="123"></constructor-arg>
+    </bean>
+
+    <bean id="user2" class="com.shf.spring.pojo.User2">
+        <property name="id" value="2"></property>
+        <property name="username" value="李四"></property>
+        <property name="password" value="1234"></property>
+        <property name="user" ref="user"></property>
+    </bean>
+
+    <bean id="userdao" class="com.shf.spring.dao.Impl.UserDaoImpl" />
+    <bean id="userservice" class="com.shf.spring.service.Impl.UserServiceImpl">
+        <property name="userDao" ref="userdao"/>
+    </bean>
+
+</beans>

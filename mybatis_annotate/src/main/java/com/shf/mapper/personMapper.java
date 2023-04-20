@@ -15,7 +15,7 @@ public interface personMapper {
 
     @Select("select * from tb_person where id = #{id}")
     @Results(@Result(
-            column = "id",
+            column = "card_id",
             property = "card",
             one = @One(select = "com.shf.mapper.IdCardMapper.selectById")
             ))
