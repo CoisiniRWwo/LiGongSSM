@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+<!--<bean id="OrderServiceImpl" class="com.shf.service.Impl.OrderServiceImpl" />-->
+<!--<bean id="bean1" class="com.shf.bean.bean1" />-->
+<!--<bean name="bean2" class="com.shf.bean.bean2" />-->
+
+<!--    <bean id="bean2" class="com.shf.Factory.MyBean2Factory" factory-method="createBean" />-->
+
+<!--    <bean id="myBean3Factory" class="com.shf.Factory.MyBean3Factory" />-->
+<!--    <bean id="bean3" factory-bean="myBean3Factory" factory-method="createBean" />-->
+<!--    <bean id="bean1" class="com.shf.bean.bean1" scope="singleton"/>-->
+    <context:component-scan base-package="com.shf" />
+</beans>

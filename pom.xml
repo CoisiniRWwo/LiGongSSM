@@ -13,6 +13,7 @@
         <module>mybatisdemo</module>
         <module>mybatis_annotate</module>
         <module>SpringTest</module>
+        <module>SpringBean</module>
     </modules>
 
     <properties>
