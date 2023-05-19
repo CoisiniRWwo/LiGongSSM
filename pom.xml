@@ -15,6 +15,7 @@
         <module>SpringTest</module>
         <module>SpringBean</module>
         <module>SpringAOP</module>
+        <module>SpringJDBC</module>
     </modules>
 
     <properties>
@@ -56,9 +57,28 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.3.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
             <version>5.3.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.9.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
+            <version>1.0</version>
+        </dependency>
+
     </dependencies>
 
 </project>
